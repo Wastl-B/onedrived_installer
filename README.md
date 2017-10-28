@@ -1,6 +1,4 @@
 # onedrived_installer
-installation script for onedrived (OneDrive for Linux)
+Installation script for onedrived (OneDrive for Linux ~> https://github.com/xybu/onedrived-dev)
 
- ....
-
-(coming soon)
+I'm not the developer of onedrived, I just made this script for an easy-install
