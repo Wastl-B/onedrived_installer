@@ -1,11 +1,11 @@
 ######################################################################
-#																																		 #
-# onedrived install script																					 #
-#																																		 #
-# i'm not the developer of onedrived. 															 #
-# 																																	 #
+#                                                                    #
+# onedrived install script                                           #
+#                                                                    #
+# i'm not the developer of onedrived.                                #
+#                                                                    #
 # for more informations visit: https://github.com/xybu/onedrived-dev #
-#																																		 #
+#                                                                    #
 ######################################################################
 thislocation=$PWD
 getlocation() {
@@ -26,10 +26,10 @@ getlocation() {
 								read -p "$location already exist, change destination?[y/n]?" answer
 								case "$answer" in
 									y|Y)	
-											getlocation
+										getlocation
 										;;
 										*)	
-											getlocation
+										getlocation
 										;;
 								esac
 						fi
@@ -84,19 +84,19 @@ installthedrive() {
 	read -p "install from (s)ource or via (p)ip+git?(default=p)[s/p]: " itype
 	case $itype in
 		s|S)	
-					cd ${location%/*}
-					git clone  https://github.com/xybu/onedrived-dev.git ${location##*/}
-					cd ${location##*/}
-					pip3 install -e .
-					bashentry s
+			cd ${location%/*}
+			git clone  https://github.com/xybu/onedrived-dev.git ${location##*/}
+			cd ${location##*/}
+			pip3 install -e .
+			bashentry s
 			;;
 		p|P)
-					pip3 install --user git+https://github.com/xybu/onedrived-dev.git
-					bashentry p
+			pip3 install --user git+https://github.com/xybu/onedrived-dev.git
+			bashentry p
 			;;
 			*)
-					pip3 install --user git+https://github.com/xybu/onedrived-dev.git
-					bashentry p
+				pip3 install --user git+https://github.com/xybu/onedrived-dev.git
+				bashentry p
 			;;
 	esac
 }
@@ -144,27 +144,31 @@ odcommands() {
 reqs() {
 	case $1 in
 		apt)
-				sudo apt update
-				sudo apt-get install $(grep -vE "^\s*#" apt.list  | tr "\n" " ")
+			sudo apt update
+			sudo apt-get install $(grep -vE "^\s*#" apt.list  | tr "\n" " ")
 			;;
 		pac)
-				sudo pacman -S  --needed `grep -vE '^\s*#' pacman.list | tr "\n" " "`    
+			sudo pacman -S  --needed `grep -vE '^\s*#' pacman.list | tr "\n" " "`
+			;;
+			*)
+				read -p "pleas enter your packagemanager [apt/pac]: " manager
+				reqs $manager
 	esac
 }
 installermain() {
 	read -p "start installer[y/n]? " answ
 	case $answ in
 		y|Y)
-						reqs $1
-						sudo pip3 install -U pip setuptools
-						getlocation
-						installthedrive
-						confthedrive
-						installngrok
-						odcommands
+			reqs $1
+			sudo pip3 install -U pip setuptools
+			getlocation
+			installthedrive
+			confthedrive
+			installngrok
+			odcommands
 			;;
-		n|N|""|*)
-						exit
+			*)
+				exit
 			;;
 	esac
 }
