@@ -51,7 +51,7 @@ getlocation() {
                       getlocation
                     ;;
                 esac
-            fi
+              fi
             mkdir -p $location
           ;;
         esac
