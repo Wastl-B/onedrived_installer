@@ -14,7 +14,7 @@ getlocation() {
   read -p "enter location to install[default=$HOME/programs/onedrived]: " location
   if [ ! -z $location ] # empty location?
     then
-      case ${location%%/*} in # wrothe with '~'?
+      case ${location%%/*} in # wrote with '~'?
         ~|"~")
           location="$HOME/${location#*/}" # switch '~/*' to '/home/USER/*'
           if [ ! -d $location ]  
