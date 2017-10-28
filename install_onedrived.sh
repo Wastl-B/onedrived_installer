@@ -17,22 +17,22 @@ getlocation() {
 			case ${location%%/*} in # wrothe with '~'?
 				~|"~")
 					location="$HOME/${location#*/}" # switch '~/*' to '/home/USER/*'
-						if [ ! -d $location ]  
-							then
-								echo
-								echo "the destination $location will be created"
-								mkdir -p $location
-							else
-								read -p "$location already exist, change destination?[y/n]?" answer
-								case "$answer" in
-									y|Y)	
-										getlocation
-										;;
-										*)	
-										getlocation
-										;;
-								esac
-						fi
+					if [ ! -d $location ]  
+						then
+							echo
+							echo "the destination $location will be created"
+							mkdir -p $location
+						else
+							read -p "$location already exist, change destination?[y/n]?" answer
+							case "$answer" in
+								y|Y)	
+									getlocation
+									;;
+									*)	
+									getlocation
+									;;
+							esac
+					fi
 					;;
 				*)
 					if [ ! -d $location ]  
