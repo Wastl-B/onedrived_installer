@@ -144,8 +144,8 @@ odcommands() {
 reqs() {
 	case $1 in
 		apt)
-				cat apt.list
-				#sudo apt-get install $(grep -vE "^\s*#" apt.list  | tr "\n" " ")
+				sudo apt update
+				sudo apt-get install $(grep -vE "^\s*#" apt.list  | tr "\n" " ")
 			;;
 		pac)
 				sudo pacman -S  --needed `grep -vE '^\s*#' pacman.list | tr "\n" " "`    
@@ -155,8 +155,7 @@ installermain() {
 	read -p "start installer[y/n]? " answ
 	case $answ in
 		y|Y)
-						#sudo apt update
-						#sudo apt install wget git python3 python3-pip build-essential python3-dev libssl-dev inotify-tools python3-dbus
+						reqs $1
 						sudo pip3 install -U pip setuptools
 						getlocation
 						installthedrive
@@ -171,5 +170,4 @@ installermain() {
 }
 echo
 #installermain
-reqs $1
-echo $thislocation
+installermain $1
