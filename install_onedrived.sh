@@ -56,7 +56,7 @@ getlocation() {
           ;;
         esac
     else
-      location="$HOME/proggis/onedrived"
+      location="$HOME/programs/onedrived"
   fi
 }
 bashentry() {
@@ -142,10 +142,10 @@ reqs() {
   case $1 in
     apt)
       sudo apt update
-      sudo apt-get install $(grep -vE "^\s*#" apt.list  | tr "\n" " ")
+      sudo apt-get install wget git python3 python3-pip build-essential python3-dev libssl-dev inotify-tools python3-dbus # $(grep -vE "^\s*#" apt.list  | tr "\n" " ")
       ;;
     pac)
-      sudo pacman -S  --needed `grep -vE '^\s*#' pacman.list | tr "\n" " "`
+      sudo pacman -S  --needed git python python-pip base-devel python-dev openssl inotify-tools python-dbus # `grep -vE '^\s*#' pacman.list | tr "\n" " "`
       ;;
       *)
         read -p "pleas enter your packagemanager [apt/pac]: " manager
